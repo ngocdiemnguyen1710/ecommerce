@@ -1,0 +1,38 @@
+/*------------Form---------*/
+.form {
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .form h3 {
+    font-weight: 700;
+  }
+  
+  .btn-submit {
+    background-color: #000000;
+    color: #fff;
+  }
+
+  .btn-submit:hover {
+    color: #fff;
+    background-color: #000000;
+    background: -webkit-linear-gradient(to right, #434343, #000000);
+    background: linear-gradient(to right, #434343, #000000);
+  }
+  
+  .invalid-feedback, .valid-feedback {
+    display: block;
+  }
+  
+  .valid-border {
+    border-color: #198754;
+  }
+  
+  .invalid-border {
+    border-color: #dc3545;
+  }
+  
