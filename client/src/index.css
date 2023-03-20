@@ -13,7 +13,7 @@
 .content-container {
   background-image: linear-gradient(#667db6,#0082c8,#DBDBDB,#EAEAEA);
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 .navbar {

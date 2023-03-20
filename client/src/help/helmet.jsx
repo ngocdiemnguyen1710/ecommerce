@@ -34,6 +34,36 @@ export const HelmetM = () => {
     if (path === "/login") {
       setData({ ...data, title: "Login - NDEcommerce" });
     }
+    if (path === "/dashboard/admin") {
+      setData({ ...data, title: "Admin & Dashboard - NDEcommerce" });
+    }
+    if (path === "/dashboard/admin/create-category") {
+      setData({
+        ...data,
+        title: "Admin & Dashboard CreateCategory - NDEcommerce",
+      });
+    }
+    if (path === "/dashboard/admin/create-product") {
+      setData({
+        ...data,
+        title: "Admin & Dashboard CreateProduct - NDEcommerce",
+      });
+    }
+    if (path === "/dashboard/admin/users") {
+      setData({
+        ...data,
+        title: "Admin & Dashboard Users - NDEcommerce",
+      });
+    }
+    if (path === "/dashboard/user") {
+      setData({ ...data, title: "User & Dashboard - NDEcommerce" });
+    }
+    if (path === "/dashboard/user/profile") {
+      setData({ ...data, title: "User & Dashboard Profile- NDEcommerce" });
+    }
+    if (path === "/dashboard/user/orders") {
+      setData({ ...data, title: "User & Dashboard Orders- NDEcommerce" });
+    }
   }, [data.title, path]);
 
   return (
