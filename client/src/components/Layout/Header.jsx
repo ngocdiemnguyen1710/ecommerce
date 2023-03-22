@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { BsCartDash } from "react-icons/bs";
 import { useAuth } from "../../context/auth";
@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+
   const handleLogout = () => {
     setAuth({
       ...auth,

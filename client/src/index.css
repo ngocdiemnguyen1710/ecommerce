@@ -11,7 +11,9 @@
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 .content-container {
-  background-image: linear-gradient(#667db6,#0082c8,#DBDBDB,#EAEAEA);
+  /* background-image: linear-gradient(#667db6,#0082c8,#DBDBDB,#EAEAEA); */
+  background-image: linear-gradient(to right,#aec6ee,#dadfe0);
+
   display: flex;
   /* align-items: center; */
   justify-content: center;
