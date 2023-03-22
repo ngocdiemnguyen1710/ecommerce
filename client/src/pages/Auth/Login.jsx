@@ -13,7 +13,7 @@ const initialValue = {
 const Login = () => {
   const [auth, setAuth] = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
+
   const validate = (fieldValues = values) => {
     const temp = { ...errors };
     if ("email" in fieldValues) {
@@ -63,6 +63,7 @@ const Login = () => {
     initialValue,
     validate
   );
+
   return (
     <div className="form register">
       <h3 className="text-center mb-4">Sign in</h3>
