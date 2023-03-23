@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axiosClient from "../../config/axios";
 import { useAuth } from "../../context/auth";
 import useForm, { Form } from "../../hooks/useForm";
