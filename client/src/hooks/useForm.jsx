@@ -9,6 +9,7 @@ const useForm = (initialValue, validate) => {
       ...values,
       [name]: value,
     });
+
     validate({ [name]: value });
   };
 
