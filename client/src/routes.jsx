@@ -7,6 +7,8 @@ import About from "./pages/About";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import CreateCategory from "./pages/Admin/CreateCategory";
 import CreateProduct from "./pages/Admin/CreateProduct";
+import Products from "./pages/Admin/Products";
+import UpdateProduct from "./pages/Admin/UpdateProduct";
 import Users from "./pages/Admin/Users";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Login from "./pages/Auth/Login";
@@ -76,6 +78,14 @@ export const router = createBrowserRouter([
               {
                 path: "admin/create-product",
                 element: <CreateProduct />,
+              },
+              {
+                path: "admin/update-product/:slug",
+                element: <UpdateProduct />,
+              },
+              {
+                path: "admin/products",
+                element: <Products />,
               },
               {
                 path: "admin/users",

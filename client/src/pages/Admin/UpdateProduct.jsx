@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import axiosClient from "../../config/axios";
 import useForm from "../../hooks/useForm";
@@ -25,11 +25,13 @@ const initialValue = {
   quantity: "",
   shipping: "",
   photo: "",
+  id: "",
 };
-
-const CreateProduct = () => {
+const UpdateProduct = () => {
   const [dataCategory, setDataCategory] = useState(null);
+
   const navigate = useNavigate();
+  const params = useParams();
 
   const validate = (fieldValues = values) => {
     const temp = { ...errors };
@@ -49,17 +51,20 @@ const CreateProduct = () => {
     initialValue,
     validate
   );
-
-  useEffect(() => {
-    getAllCategory();
-  }, []);
-
   const getAllCategory = async () => {
     const res = await axiosClient.get("/api/v1/category/get-category");
     setDataCategory(res.data.category);
   };
 
-  const handleCreateProduct = async (e) => {
+  const baseUrl = "http://localhost:8080";
+  const getSingleProduct = async () => {
+    const { data } = await axiosClient.get(
+      `/api/v1/product/get-product/${params.slug}`
+    );
+    setValues({ ...values, ...data.product });
+  };
+
+  const handleUpdateProduct = async (e) => {
     e.preventDefault();
     const productData = new FormData();
 
@@ -75,18 +80,39 @@ const CreateProduct = () => {
         "content-type": "multipart/form-data",
       },
     };
-    const { data } = await axiosClient.post(
-      "/api/v1/product/create-product",
+    const { data } = await axiosClient.put(
+      `/api/v1/product/update-product/${values._id}`,
       productData,
       config
     );
     if (data && data?.success) {
-      toast.success("Product created successfully!");
+      toast.success("Product updated successfully!");
       navigate("/dashboard/admin/products");
     } else {
       toast.error(data.message);
     }
   };
+
+  const handleDeleteProduct = async () => {
+    const { data } = await axiosClient.delete(
+      `/api/v1/product/delete-product/${values._id}`
+    );
+
+    if (data && data?.success) {
+      toast.success("Product deleted successfully!");
+      navigate("/dashboard/admin/products");
+    } else {
+      toast.error(data.message);
+    }
+  };
+
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+
+  useEffect(() => {
+    getSingleProduct();
+  }, []);
 
   return (
     <div className="container-fluid dashboard">
@@ -95,7 +121,7 @@ const CreateProduct = () => {
           <AdminMenu />
         </div>
         <div className="col-md-9 dashboard-right">
-          <div className="w-75 dashboard-right-title mb-4">Create Product</div>
+          <div className="w-75 dashboard-right-title mb-4">Update Product</div>
           <div className="mb-3">
             <Controls.Select
               placeholder="Select a category"
@@ -115,11 +141,20 @@ const CreateProduct = () => {
             />
           </div>
           <div className="mb-3">
-            {values.photo && (
+            {values.photo ? (
               <div className="text-center">
                 <img
                   className="img img-responsive"
                   src={URL.createObjectURL(values.photo)}
+                  alt="photo upload"
+                  height={"200px"}
+                />
+              </div>
+            ) : (
+              <div className="text-center">
+                <img
+                  className="img img-responsive"
+                  src={`${baseUrl}/api/v1/product/product-photo/${values._id}`}
                   alt="photo upload"
                   height={"200px"}
                 />
@@ -168,14 +203,15 @@ const CreateProduct = () => {
           <div className="mb-3">
             <Controls.RadioGroup
               label={"Do you want to ship?"}
-              value={values.shipping}
+              value={values.shipping ? "yes" : "no"}
               name="shipping"
               onChange={handleChange}
               items={shippingItems}
             />
           </div>
           <div className="mb-3">
-            <ButtonAction title={"Submit"} onClick={handleCreateProduct} />
+            <ButtonAction title={"Update"} onClick={handleUpdateProduct} />
+            <ButtonAction title={"Delete"} onClick={handleDeleteProduct} />
           </div>
         </div>
       </div>
@@ -183,4 +219,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

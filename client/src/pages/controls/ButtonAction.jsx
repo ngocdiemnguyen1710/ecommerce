@@ -4,7 +4,7 @@ const ButtonAction = ({ title, onClick, icon }) => {
   return (
     <div
       className={`btn-action ${
-        title === "Submit"
+        title === "Submit" || title === "Update"
           ? "btn-action--submit"
           : title === "Edit"
           ? "btn-action--edit"

@@ -167,6 +167,7 @@ export const deleteProductController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Product deleted successfully!",
+      product,
     });
   } catch (error) {
     res.status(500).send({
