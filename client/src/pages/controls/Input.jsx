@@ -1,12 +1,21 @@
 import React from "react";
 
-const Input = ({ label, name, value, type, onChange, placeholder, error }) => {
+const Input = ({
+  label,
+  name,
+  value,
+  type,
+  onChange,
+  placeholder,
+  error,
+  className,
+}) => {
   return (
     <>
-      <label className="form-label">{label}</label>
+      {label && <label className="form-label">{label}</label>}
       <input
         type={type}
-        className={`form-control ${
+        className={`form-control ${className} ${
           error == null
             ? "no-valid"
             : error === "Look Good!"

@@ -33,7 +33,7 @@
 }
 
 .dashboard-right .form-control {
-    max-width: 50%;
+    width: 50%;
 }
 
 .btn-action {
@@ -76,5 +76,30 @@
 
 .table>:not(:last-child)>:last-child>* {
     border-bottom-color: #e2e2e2;
+}
+
+.list-product-wp {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.list-product-wp a {
+    text-decoration: none;
+    color: #333;
+}
+
+.card-text {
+    font-size: 13px;
+    color: #747272;
+}
+
+.card-img-top {
+    height: 300px;
 }
 
