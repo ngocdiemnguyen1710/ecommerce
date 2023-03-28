@@ -7,6 +7,8 @@ import useForm from "../../hooks/useForm";
 import ButtonAction from "../controls/ButtonAction";
 import { Controls } from "../controls/Controls";
 
+const baseUrl = "http://localhost:8080";
+
 const shippingItems = [
   {
     id: "yes",
@@ -26,11 +28,11 @@ const initialValue = {
   quantity: "",
   shipping: "",
   photo: "",
-  id: "",
 };
 
 const UpdateProduct = () => {
   const [dataCategory, setDataCategory] = useState(null);
+  const [id, setId] = useState("");
 
   const navigate = useNavigate();
   const params = useParams();
@@ -58,25 +60,25 @@ const UpdateProduct = () => {
     setDataCategory(res.data.category);
   };
 
-  const baseUrl = "http://localhost:8080";
   const getSingleProduct = async () => {
     const { data } = await axiosClient.get(
       `/api/v1/product/get-product/${params.slug}`
     );
     setValues({ ...values, ...data.product });
+    setId(data.product._id);
   };
 
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     const productData = new FormData();
-    const category = values.category._id;
-    productData.append("name", values.name);
-    productData.append("description", values.description);
-    productData.append("price", values.price);
+    const category = values?.category._id;
+    productData.append("name", values?.name);
+    productData.append("description", values?.description);
+    productData.append("price", values?.price);
     productData.append("category", category);
-    productData.append("quantity", values.quantity);
-    productData.append("shipping", values.shipping);
-    productData.append("photo", values.photo);
+    productData.append("quantity", values?.quantity);
+    productData.append("shipping", values?.shipping);
+    productData.append("photo", values?.photo);
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -129,7 +131,7 @@ const UpdateProduct = () => {
               placeholder="Select a category"
               options={dataCategory}
               onChange={handleChange}
-              value={values.category}
+              value={values?.category}
               name="category"
               error={errors.category}
             />
@@ -156,7 +158,7 @@ const UpdateProduct = () => {
               <div className="text-center">
                 <img
                   className="img img-responsive"
-                  src={`${baseUrl}/api/v1/product/product-photo/${values._id}`}
+                  src={`${baseUrl}/api/v1/product/product-photo/${id}`}
                   alt="photo upload"
                   height={"200px"}
                 />
@@ -167,7 +169,7 @@ const UpdateProduct = () => {
             <Controls.Input
               placeholder={"Enter the name of product"}
               type="text"
-              value={values.name}
+              value={values?.name}
               name="name"
               onChange={handleChange}
               className="w-100"

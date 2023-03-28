@@ -178,7 +178,7 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
-//filter product
+//Filter product
 export const filterProductController = async (req, res) => {
   try {
     const { checked, radio } = req.body;
@@ -196,6 +196,47 @@ export const filterProductController = async (req, res) => {
       success: false,
       error,
       message: "Error while filtering product",
+    });
+  }
+};
+
+//Count product
+export const countTotalController = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: "Error while counting total products",
+      error,
+    });
+  }
+};
+
+//Get product base on page
+export const getProductPerPageController = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: "Error while get product list",
+      error,
     });
   }
 };
