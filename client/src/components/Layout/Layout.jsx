@@ -19,10 +19,7 @@ const Layout = () => {
     <HelmetProvider>
       <HelmetM />
       <Header />
-      <div
-        style={{ minHeight: "70vh", padding: "30px" }}
-        className="content-container"
-      >
+      <div style={{ minHeight: "70vh" }} className="content-container">
         <Outlet />
       </div>
       <Footer />

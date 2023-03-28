@@ -3,6 +3,7 @@ import formidable from "express-formidable";
 import {
   createProductController,
   deleteProductController,
+  filterProductController,
   getAllProductsController,
   getPhotoProductController,
   getSingleProductController,
@@ -43,4 +44,6 @@ router.get("/product-photo/:pid", getPhotoProductController);
 //Delete Product
 router.delete("/delete-product/:pid", deleteProductController);
 
+//Filter Product
+router.post("/product-filter", filterProductController);
 export default router;

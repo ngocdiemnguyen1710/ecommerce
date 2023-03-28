@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
 @import url('../src/assets/page/auth.css');
 @import url('../src/assets/page/dashboard.css');
+@import url('../src/assets/page/homepage.css');
 
 *{
   margin: 0;
@@ -12,8 +13,6 @@
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 .content-container {
-  background-color: #e9ecef;
-
   display: flex;
   /* align-items: center; */
   justify-content: center;

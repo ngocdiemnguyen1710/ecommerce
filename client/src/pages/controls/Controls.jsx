@@ -5,6 +5,7 @@ import Select from "./Select";
 import InputFile from "./InputFile";
 import TextAreaInput from "./TextArea";
 import RadioGroup from "./RadioGroup";
+import CheckboxFilter from "./Checkbox";
 
 export const Controls = {
   Input,
@@ -14,4 +15,5 @@ export const Controls = {
   InputFile,
   TextAreaInput,
   RadioGroup,
+  CheckboxFilter,
 };

@@ -10,6 +10,7 @@ const Products = () => {
   useEffect(() => {
     getAllProduct();
   }, []);
+
   const baseUrl = "http://localhost:8080";
   const getAllProduct = async () => {
     const { data } = await axiosClient.get("/api/v1/product/get-product");
@@ -19,6 +20,7 @@ const Products = () => {
       toast.error(data.message);
     }
   };
+
   return (
     <div className="container-fluid dashboard">
       <div className="row">
@@ -43,8 +45,10 @@ const Products = () => {
                         alt={data.name}
                       />
                       <div className="card-body">
-                        <h5 className="card-title">{data.name}</h5>
-                        <p className="card-text">{data.description}</p>
+                        <h5 className="card-title text-center text-uppercase">
+                          {data.name}
+                        </h5>
+                        <p className="card-text text-center">${data.price}</p>
                       </div>
                     </div>
                   </Link>

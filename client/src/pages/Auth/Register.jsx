@@ -82,79 +82,81 @@ const Register = () => {
     }
   };
   return (
-    <div className="form register">
-      <h3 className="text-center mb-4">Register</h3>
-      <Form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Email"
-            value={values.email}
-            name="email"
-            placeholder="abc@gmail.com"
-            onChange={handleChange}
-            error={errors.email}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="password"
-            label="Password"
-            value={values.password}
-            name="password"
-            placeholder="1234"
-            onChange={handleChange}
-            error={errors.password}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Name"
-            value={values.name}
-            name="name"
-            placeholder="ABCxyz"
-            onChange={handleChange}
-            error={errors.name}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Phone"
-            value={values.phone}
-            name="phone"
-            placeholder="0356788823"
-            onChange={handleChange}
-            error={errors.phone}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Address"
-            value={values.address}
-            name="address"
-            placeholder="27A, NNA Street, HCMC"
-            onChange={handleChange}
-            error={errors.address}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Who is your best friend?"
-            value={values.answer}
-            name="answer"
-            placeholder="John, Andy,..."
-            onChange={handleChange}
-            error={errors.answer}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Button title="Submit" />
-        </div>
-      </Form>
+    <div className="container-fluid form-wp">
+      <div className="form register">
+        <h3 className="text-center mb-4">Sign up</h3>
+        <Form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Email"
+              value={values.email}
+              name="email"
+              placeholder="abc@gmail.com"
+              onChange={handleChange}
+              error={errors.email}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="password"
+              label="Password"
+              value={values.password}
+              name="password"
+              placeholder="1234"
+              onChange={handleChange}
+              error={errors.password}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Name"
+              value={values.name}
+              name="name"
+              placeholder="ABCxyz"
+              onChange={handleChange}
+              error={errors.name}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Phone"
+              value={values.phone}
+              name="phone"
+              placeholder="0356788823"
+              onChange={handleChange}
+              error={errors.phone}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Address"
+              value={values.address}
+              name="address"
+              placeholder="27A, NNA Street, HCMC"
+              onChange={handleChange}
+              error={errors.address}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Who is your best friend?"
+              value={values.answer}
+              name="answer"
+              placeholder="John, Andy,..."
+              onChange={handleChange}
+              error={errors.answer}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Button title="Submit" />
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

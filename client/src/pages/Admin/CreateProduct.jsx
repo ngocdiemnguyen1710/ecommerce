@@ -66,7 +66,7 @@ const CreateProduct = () => {
     productData.append("name", values.name);
     productData.append("description", values.description);
     productData.append("price", values.price);
-    productData.append("category", values.category);
+    productData.append("category", values.category._id);
     productData.append("quantity", values.quantity);
     productData.append("shipping", values.shipping);
     productData.append("photo", values.photo);
@@ -167,7 +167,7 @@ const CreateProduct = () => {
           </div>
           <div className="mb-3">
             <Controls.RadioGroup
-              label={"Do you want to ship?"}
+              label={"Do you want shipping?"}
               value={values.shipping}
               name="shipping"
               onChange={handleChange}

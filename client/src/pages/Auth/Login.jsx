@@ -65,40 +65,42 @@ const Login = () => {
   );
 
   return (
-    <div className="form register">
-      <h3 className="text-center mb-4">Sign in</h3>
-      <Form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <Controls.Input
-            type="text"
-            label="Email"
-            value={values.email}
-            name="email"
-            placeholder="Enter your email"
-            onChange={handleChange}
-            error={errors.email}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Input
-            type="password"
-            label="Password"
-            value={values.password}
-            name="password"
-            placeholder="Enter your password"
-            onChange={handleChange}
-            error={errors.password}
-          />
-        </div>
-        <div className="mb-3">
-          <Controls.Button title="Login" />
-        </div>
-        <div className="text-center">
-          <Link to="/forgot-password" className="text-decoration-none">
-            Forgot password ?
-          </Link>
-        </div>
-      </Form>
+    <div className="form-wp">
+      <div className="form register">
+        <h3 className="text-center mb-4">Sign in</h3>
+        <Form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <Controls.Input
+              type="text"
+              label="Email"
+              value={values.email}
+              name="email"
+              placeholder="Enter your email"
+              onChange={handleChange}
+              error={errors.email}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Input
+              type="password"
+              label="Password"
+              value={values.password}
+              name="password"
+              placeholder="Enter your password"
+              onChange={handleChange}
+              error={errors.password}
+            />
+          </div>
+          <div className="mb-3">
+            <Controls.Button title="Login" />
+          </div>
+          <div className="text-center">
+            <Link to="/forgot-password" className="text-decoration-none">
+              Forgot password ?
+            </Link>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

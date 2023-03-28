@@ -1,4 +1,8 @@
 /*------------Form---------*/
+.form-wp {
+  padding: 30px;
+  width: 100%;
+}
 .form {
     width: 400px;
     margin: 0 auto;
@@ -6,6 +10,7 @@
     border-radius: 8px;
     padding: 20px;
     background-color: #fff;
+    border: 1px solid #c9c9c9;
   }
   
   .form h3 {

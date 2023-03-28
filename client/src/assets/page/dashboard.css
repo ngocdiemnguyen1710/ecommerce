@@ -1,3 +1,8 @@
+.dashboard {
+    width: 100%;
+    background-color: #e9ecef;
+    padding: 30px
+}
 .menu-title {
     font-weight: 700;
     font-size: 18px;

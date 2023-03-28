@@ -8,7 +8,7 @@ const RadioGroup = ({ label, name, value, onChange, items }) => {
       <Radio.Group onChange={onChange} value={value} name={name}>
         {items.map((item) => {
           return (
-            <Radio value={item.id} key={item.id}>
+            <Radio value={item.array ? item.array : item.id} key={item.id}>
               {item.name}
             </Radio>
           );

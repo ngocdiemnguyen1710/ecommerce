@@ -51,7 +51,7 @@ const Header = () => {
                 <>
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link">
-                      Register
+                      Sign up
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -62,15 +62,16 @@ const Header = () => {
                 </>
               ) : (
                 <li className="nav-item dropdown">
-                  <NavLink
-                    to="/"
+                  <div
                     className="nav-link dropdown-toggle"
                     role="button"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                    data-bs-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01"
+                    aria-label="Toggle navigation"
                   >
                     {auth.user.name}
-                  </NavLink>
+                  </div>
                   <ul className="dropdown-menu dropdown-menu-end">
                     <li>
                       <NavLink
