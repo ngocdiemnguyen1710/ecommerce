@@ -31,7 +31,7 @@ const Select = ({
           onChange(convertToDefEventPara(name, data));
         }}
         onSearch={onSearch}
-        value={value.name}
+        value={value?.name}
         name={name}
         {...(error && { status: "error" })}
         {...other}

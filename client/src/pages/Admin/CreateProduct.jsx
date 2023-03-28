@@ -66,7 +66,7 @@ const CreateProduct = () => {
     productData.append("name", values.name);
     productData.append("description", values.description);
     productData.append("price", values.price);
-    productData.append("category", values.category._id);
+    productData.append("category", values.category);
     productData.append("quantity", values.quantity);
     productData.append("shipping", values.shipping);
     productData.append("photo", values.photo);
