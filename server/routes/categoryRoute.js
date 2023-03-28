@@ -29,13 +29,12 @@ router.put(
 );
 
 //get all category
-router.get("/get-category", requireSignIn, isAdmin, getAllCategoryController);
+router.get("/get-category", getAllCategoryController);
 
 //get single category
 router.get(
   "/single-category/:slug",
-  requireSignIn,
-  isAdmin,
+
   getSingleCategoryController
 );
 

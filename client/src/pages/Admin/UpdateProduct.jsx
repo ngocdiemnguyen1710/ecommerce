@@ -17,6 +17,7 @@ const shippingItems = [
     name: "No",
   },
 ];
+
 const initialValue = {
   name: "",
   description: "",
@@ -27,6 +28,7 @@ const initialValue = {
   photo: "",
   id: "",
 };
+
 const UpdateProduct = () => {
   const [dataCategory, setDataCategory] = useState(null);
 
@@ -67,11 +69,11 @@ const UpdateProduct = () => {
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     const productData = new FormData();
-
+    const category = values.category._id;
     productData.append("name", values.name);
     productData.append("description", values.description);
     productData.append("price", values.price);
-    productData.append("category", values.category);
+    productData.append("category", category);
     productData.append("quantity", values.quantity);
     productData.append("shipping", values.shipping);
     productData.append("photo", values.photo);

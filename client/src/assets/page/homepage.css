@@ -1,0 +1,30 @@
+.homepage {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.homepage-left {
+    background-color: #f6f6f6;
+    border: 1px solid #e6e6e6;
+    padding: 10px 20px;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.homepage-left-title, .homepage-right-title {
+    font-weight: 700;
+   
+}
+
+.homepage-left-title {
+    color: #868383;
+    border-bottom: 1px solid #e6e6e6;
+    display: block;
+    padding-bottom: 10px;
+}
+
+.homepage-title {
+    display: block;
+    margin-bottom: 30px;
+}
