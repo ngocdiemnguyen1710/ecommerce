@@ -4,6 +4,7 @@ import logo from "../../images/logo.png";
 import { BsCartDash } from "react-icons/bs";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
+import SearchInput from "../../pages/components/SearchInput";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -36,6 +37,9 @@ const Header = () => {
             <NavLink to="/" className="navbar-brand">
               <img src={logo} alt="logo" />
             </NavLink>
+            <div className="ms-auto">
+              <SearchInput />
+            </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" aria-current="page">

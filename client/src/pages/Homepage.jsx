@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Prices } from "../components/Prices";
 import axiosClient from "../config/axios";
 import { Controls } from "./controls/Controls";
-
-const baseUrl = "http://localhost:8080";
+import ProductItem from "./components/ProductItem";
 
 const Homepage = () => {
   const [dataProduct, setDataProduct] = useState(null);
@@ -16,6 +15,8 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getAllCategory();
   }, []);
@@ -24,7 +25,7 @@ const Homepage = () => {
     if (!checkedList.length || !radio.length) {
       getAllProduct();
     }
-  }, [checkedList.length, radio.length]);
+  }, []);
 
   useEffect(() => {
     if (checkedList.length || radio.length) {
@@ -53,7 +54,7 @@ const Homepage = () => {
     );
     setLoading(false);
     if (data && data?.success) {
-      setDataProduct(data.products);
+      setDataProduct([...data.products]);
     } else {
       setLoading(false);
       toast.error(data.message);
@@ -89,7 +90,7 @@ const Homepage = () => {
       radio,
     });
     if (data && data?.success) {
-      setDataProduct(data.products);
+      setDataProduct([...data.products]);
     } else {
       toast.error(data.message);
     }
@@ -144,7 +145,7 @@ const Homepage = () => {
               />
             </div>
           </div>
-          <div className="home-left-item mt-5">
+          <div className="home-left-item mt-5 d-flex justify-content-center">
             <Controls.ButtonAction
               title={"Reset Filter"}
               onClick={() => window.location.reload()}
@@ -155,32 +156,24 @@ const Homepage = () => {
           <div className="homepage-list-product list-product-wp">
             {dataProduct?.map((data) => {
               return (
-                <Link
-                  to={`/dashboard/admin/update-product/${data.slug}`}
+                <ProductItem
                   key={data._id}
-                >
-                  <div className="card card-item">
-                    <img
-                      src={`${baseUrl}/api/v1/product/product-photo/${data._id}`}
-                      className="card-img-top"
-                      alt={data.name}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title text-center text-uppercase">
-                        {data.name}
-                      </h5>
-                      <p className="card-text text-center">${data.price}</p>
-                    </div>
-                  </div>
-                </Link>
+                  id={data._id}
+                  alt={data.name}
+                  name={data.name}
+                  description={data.description}
+                  price={data.price}
+                  handleMoreDetail={() => navigate(`/product/${data.slug}`)}
+                  btn
+                />
               );
             })}
           </div>
           <div className="mt-3 text-center">
             {dataProduct &&
               dataProduct.length < total &&
-              !checkedList &&
-              !radio && (
+              !checkedList.length &&
+              !radio.length && (
                 <Controls.ButtonAction
                   title={loading ? "Loading..." : "Load more"}
                   onClick={(e) => {

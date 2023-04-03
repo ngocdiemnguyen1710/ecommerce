@@ -20,6 +20,8 @@ import Policy from "./pages/Policy";
 import Dashboard from "./pages/User/Dashboard";
 import Orders from "./pages/User/Orders";
 import Profile from "./pages/User/Profile";
+import Search from "./pages/Search";
+import ProductDetail from "./pages/ProductDetail";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +35,7 @@ export const router = createBrowserRouter([
             index: true,
             element: <Homepage />,
           },
+
           {
             path: "/contact",
             element: <Contact />,
@@ -44,6 +47,14 @@ export const router = createBrowserRouter([
           {
             path: "/policy",
             element: <Policy />,
+          },
+          {
+            path: "/search",
+            element: <Search />,
+          },
+          {
+            path: "/product/:slug",
+            element: <ProductDetail />,
           },
           {
             path: "/dashboard",

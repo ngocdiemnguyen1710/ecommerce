@@ -55,6 +55,8 @@ const UpdateProduct = () => {
     initialValue,
     validate
   );
+
+  console.log(values.category.name);
   const getAllCategory = async () => {
     const res = await axiosClient.get("/api/v1/category/get-category");
     setDataCategory(res.data.category);
@@ -115,8 +117,10 @@ const UpdateProduct = () => {
   }, []);
 
   useEffect(() => {
-    getSingleProduct();
-  }, []);
+    if (params?.slug) {
+      getSingleProduct();
+    }
+  }, [params?.slug]);
 
   return (
     <div className="container-fluid dashboard">

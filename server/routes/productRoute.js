@@ -9,6 +9,8 @@ import {
   getPhotoProductController,
   getProductPerPageController,
   getSingleProductController,
+  relatedProductControll,
+  searchProductController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -54,4 +56,11 @@ router.get("/count-product", countTotalController);
 
 //Get product per page
 router.get("/product-list/:page", getProductPerPageController);
+
+//Search product
+router.get("/search/:keyword", searchProductController);
+
+//Similar product
+router.get("/related-product/:pid/:cid", relatedProductControll);
+
 export default router;

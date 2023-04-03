@@ -2,6 +2,7 @@
 @import url('../src/assets/page/auth.css');
 @import url('../src/assets/page/dashboard.css');
 @import url('../src/assets/page/homepage.css');
+@import url('../src/assets/page/productDetails.css');
 
 *{
   margin: 0;

@@ -59,6 +59,9 @@
 .btn-action--edit {
     background-color: rgb(64, 64, 112);
 }
+.btn-no-title {
+    background-color: #595353;
+}
 .btn-action button {
     color: #fff;
     display: flex;
