@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import axiosClient from "../../config/axios";
+import ProductItem from "../components/ProductItem";
 
 const Products = () => {
   const [dataProduct, setDataProduct] = useState(null);
@@ -11,7 +12,6 @@ const Products = () => {
     getAllProduct();
   }, []);
 
-  const baseUrl = "http://localhost:8080";
   const getAllProduct = async () => {
     const { data } = await axiosClient.get("/api/v1/product/get-product");
     if (data && data?.success) {
@@ -38,19 +38,13 @@ const Products = () => {
                     to={`/dashboard/admin/update-product/${data.slug}`}
                     key={data._id}
                   >
-                    <div className="card card-item">
-                      <img
-                        src={`${baseUrl}/api/v1/product/product-photo/${data._id}`}
-                        className="card-img-top"
-                        alt={data.name}
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title text-center text-uppercase">
-                          {data.name}
-                        </h5>
-                        <p className="card-text text-center">${data.price}</p>
-                      </div>
-                    </div>
+                    <ProductItem
+                      id={data._id}
+                      alt={data.name}
+                      name={data.name}
+                      description={data.description}
+                      price={data.price}
+                    />
                   </Link>
                 );
               })}

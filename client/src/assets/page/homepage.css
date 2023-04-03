@@ -28,3 +28,7 @@
     display: block;
     margin-bottom: 30px;
 }
+
+.ant-input-group-addon button{
+    background-color: #4961b1 !important;
+}
