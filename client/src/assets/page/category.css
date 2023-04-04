@@ -1,0 +1,18 @@
+.list-category-wp {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.category-item {
+    padding: 20px;
+    border: 1px solid var(--main-blue);
+    color: var(--main-white);
+    background-color: var(--main-blue);
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.category-item:hover {
+    opacity: 0.8;
+}

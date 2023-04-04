@@ -7,12 +7,12 @@
     font-weight: 700;
     font-size: 18px;
     padding: 1rem;
-    color: #4961b1;
+    color: var(--main-blue);
 
 }
 .menu-admin-user .list-group-item {
     font-size: 14px;
-    color: #333;
+    color: var(--main-black);
     border: none;
     background-color: #e9ecef;
 }
@@ -21,7 +21,7 @@
 }
 
 .menu-admin-user .list-group-item.active {
-    color: #333;
+    color: var(--main-black);
     border: none;
     font-weight: 700;
 }
@@ -51,7 +51,7 @@
 }
 
 .btn-action--submit {
-    background-color: #4961b1;
+    background-color: var(--main-blue);
 }
 .btn-action--delete {
     background-color: red;
@@ -63,7 +63,7 @@
     background-color: #595353;
 }
 .btn-action button {
-    color: #fff;
+    color: var(--main-white);
     display: flex;
     align-items: center;
     gap: 2px;
@@ -76,7 +76,7 @@
 }
 
 .dashboard-table {
-    background-color: #fff;
+    background-color: var(--main-white);
     padding: 20px;
     margin: 20px 0;
     border-radius: 20px;
@@ -99,7 +99,7 @@
 
 .list-product-wp a {
     text-decoration: none;
-    color: #333;
+    color: var(--main-black);
 }
 
 .card-text {

@@ -5,9 +5,11 @@ import { BsCartDash } from "react-icons/bs";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
 import SearchInput from "../../pages/components/SearchInput";
+import { useCategoy } from "../../hooks/useCategory";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategoy();
 
   const handleLogout = () => {
     setAuth({
@@ -46,10 +48,36 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
+              <li className="nav-item dropdown">
+                <div
+                  className="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-target="#navbarTogglerDemo01"
+                  aria-controls="navbarTogglerDemo01"
+                  aria-label="Toggle navigation"
+                >
                   Category
-                </NavLink>
+                </div>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <NavLink to="/categories" className="dropdown-item">
+                      All categories
+                    </NavLink>
+                  </li>
+                  {categories?.map((category) => {
+                    return (
+                      <li key={category._id}>
+                        <NavLink
+                          to={`/category/${category?.slug}`}
+                          className="dropdown-item"
+                        >
+                          {category?.name}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
               {!auth.user ? (
                 <>
@@ -86,9 +114,6 @@ const Header = () => {
                       >
                         Dashboard
                       </NavLink>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
                     </li>
                     <li>
                       <NavLink

@@ -4,7 +4,7 @@ import ProductItem from "./components/ProductItem";
 
 const Search = () => {
   const [search, setSearch] = useSearch();
-  console.log(search);
+
   return (
     <div className="container-fluid homepage">
       <div className="search-title mb-4">
