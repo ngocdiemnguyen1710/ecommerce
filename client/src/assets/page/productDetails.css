@@ -28,22 +28,22 @@
     align-items: center;
 }
 .product-detail-action--add-cart {
-    background-color: #fff;
-    border: 1px solid #4961b1;
+    background-color: var(--main-white);
+    border: 1px solid var(--main-blue);
 }
 
 .product-detail-action--add-cart button {
-    background-color: #fff;
-    border: 1px solid #4961b1;
-    color: #4961b1 !important;
+    background-color: var(--main-white);
+    border: 1px solid var(--main-blue);
+    color: var(--main-blue) !important;
 }
 
 .product-detail-action--buy-now {
-    background-color: #4961b1;
+    background-color: var(--main-blue);
 }
 
 .product-detail-action--buy-now button:hover {
-    color: #fff;
+    color: var(--main-white);
 }
 
 /* ----------------------------Similar--------------------- */

@@ -3,6 +3,13 @@
 @import url('../src/assets/page/dashboard.css');
 @import url('../src/assets/page/homepage.css');
 @import url('../src/assets/page/productDetails.css');
+@import url('../src/assets/page/category.css');
+
+:root {
+  --main-blue: #4961b1;
+  --main-white: #fff;
+  --main-black: #333;
+}
 
 *{
   margin: 0;
@@ -28,23 +35,23 @@
   left: 0;
   border: 0;
   right: 0;
-  background: #fff;
+  background: var(--main-white);
   width: 100%;
   z-index: 999;
 }
 
 .nav-link {
-  color: #333;
+  color: var(--main-black);
   font-weight: 300 !important;
 }
 
 .nav-link:hover {
-  color: #333;
+  color: var(--main-black);
 }
 
 .nav-item .active {
-  border-bottom: 1px solid #333 ;
-  color: #333;
+  border-bottom: 1px solid var(--main-black) ;
+  color: var(--main-black);
 }
 
 .navbar-brand {
@@ -71,18 +78,18 @@
 }
 .cart-item .cart-icon{
   font-size: 22px;
-  color: #333;
+  color: var(--main-black);
 }
 
 .cart-number {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #4961b1;
+  background-color: var(--main-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--main-white);
   font-size: 13px;
   position: absolute;
   top: -5px;
@@ -93,7 +100,7 @@
 
 .footer {
   padding: 25px;
-  color: #fff;
+  color: var(--main-white);
   background-color: #000000;
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
@@ -102,11 +109,11 @@
 
 .footer a{
   text-decoration: none;
-  color: #fff;
+  color: var(--main-white);
 }
 
 .footer a:hover {
-  border-bottom: 1px solid #fff ;
+  border-bottom: 1px solid var(--main-white);
 }
 
 /*page not found*/
@@ -126,14 +133,14 @@
 
 .pnf-btn {
   padding: 10px 15px;
-  border: 1px solid #333;
+  border: 1px solid var(--main-black);
   border-radius: 5px;
   text-decoration: none;
-  color: #333;
+  color: var(--main-black);
 }
 
 .pnf-btn:hover {
-  color: #333;
+  color: var(--main-black);
 }
 
 /*-------Contact--------*/
@@ -149,7 +156,7 @@
   background-color: #000000;
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
-  color: #fff;
+  color: var(--main-white);
   padding: 5px 10px;
   border-radius: 5px;
 }

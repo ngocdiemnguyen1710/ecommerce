@@ -5,21 +5,19 @@ import { Prices } from "../components/Prices";
 import axiosClient from "../config/axios";
 import { Controls } from "./controls/Controls";
 import ProductItem from "./components/ProductItem";
+import { useCategoy } from "../hooks/useCategory";
 
 const Homepage = () => {
-  const [dataProduct, setDataProduct] = useState(null);
-  const [categories, setCategories] = useState([]);
+  const [dataProduct, setDataProduct] = useState([]);
   const [checkedList, setCheckedList] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const categories = useCategoy();
 
-  useEffect(() => {
-    getAllCategory();
-  }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!checkedList.length || !radio.length) {
@@ -42,11 +40,6 @@ const Homepage = () => {
     loadMore();
   }, [page]);
 
-  const getAllCategory = async () => {
-    const { data } = await axiosClient.get("/api/v1/category/get-category");
-    setCategories(data.category);
-  };
-
   const getAllProduct = async () => {
     setLoading(true);
     const { data } = await axiosClient.get(
@@ -54,7 +47,7 @@ const Homepage = () => {
     );
     setLoading(false);
     if (data && data?.success) {
-      setDataProduct([...data.products]);
+      setDataProduct(data?.products);
     } else {
       setLoading(false);
       toast.error(data.message);
@@ -90,7 +83,7 @@ const Homepage = () => {
       radio,
     });
     if (data && data?.success) {
-      setDataProduct([...data.products]);
+      setDataProduct(data?.products);
     } else {
       toast.error(data.message);
     }
@@ -101,7 +94,10 @@ const Homepage = () => {
     if (value) {
       all.push(id);
     } else {
-      all = all.filter((item) => item !== id);
+      let findIndex = all.findIndex((item) => item == id);
+      if (findIndex !== -1) {
+        all.splice(findIndex, 1);
+      }
     }
     setCheckedList(all);
   };
@@ -125,7 +121,7 @@ const Homepage = () => {
                         checked={
                           checkedList.findIndex((r) => r == category._id) > -1
                         }
-                        value={checkedList}
+                        value={category._id}
                         onChange={(e) =>
                           handleFilter(e.target.checked, category._id)
                         }

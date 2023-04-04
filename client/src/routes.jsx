@@ -22,6 +22,8 @@ import Orders from "./pages/User/Orders";
 import Profile from "./pages/User/Profile";
 import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
+import Categories from "./pages/Categories";
+import CategoryProduct from "./pages/CategoryProduct";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ export const router = createBrowserRouter([
           {
             path: "/search",
             element: <Search />,
+          },
+          {
+            path: "/categories",
+            element: <Categories />,
+          },
+          {
+            path: "/category/:slug",
+            element: <CategoryProduct />,
           },
           {
             path: "/product/:slug",
