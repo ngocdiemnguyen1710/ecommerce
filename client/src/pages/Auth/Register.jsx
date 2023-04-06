@@ -95,6 +95,7 @@ const Register = () => {
               placeholder="abc@gmail.com"
               onChange={handleChange}
               error={errors.email}
+              required
             />
           </div>
           <div className="mb-3">
@@ -106,6 +107,7 @@ const Register = () => {
               placeholder="1234"
               onChange={handleChange}
               error={errors.password}
+              required
             />
           </div>
           <div className="mb-3">
@@ -117,6 +119,7 @@ const Register = () => {
               placeholder="ABCxyz"
               onChange={handleChange}
               error={errors.name}
+              required
             />
           </div>
           <div className="mb-3">
@@ -128,6 +131,7 @@ const Register = () => {
               placeholder="0356788823"
               onChange={handleChange}
               error={errors.phone}
+              required
             />
           </div>
           <div className="mb-3">
@@ -139,6 +143,7 @@ const Register = () => {
               placeholder="27A, NNA Street, HCMC"
               onChange={handleChange}
               error={errors.address}
+              required
             />
           </div>
           <div className="mb-3">
@@ -150,6 +155,7 @@ const Register = () => {
               placeholder="John, Andy,..."
               onChange={handleChange}
               error={errors.answer}
+              required
             />
           </div>
           <div className="mb-3">

@@ -9,6 +9,7 @@ const Input = ({
   placeholder,
   error,
   className,
+  ...other
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const Input = ({
         value={value}
         name={name}
         onChange={onChange}
-        required
+        {...other}
       />
 
       {error && (

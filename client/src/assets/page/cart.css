@@ -50,9 +50,24 @@
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .cart-right-total span {
     font-weight: 700;
     font-size: 16px;
+}
+
+.cart-right-total div {
+    display: flex;
+    align-items: center;
+}
+.btn-edit-address {
+    background-color: var(--main-gray)!important;
+    outline: none;
+    border: none;
+}
+
+.btn-edit-address button{
+    color: #333!important;
 }

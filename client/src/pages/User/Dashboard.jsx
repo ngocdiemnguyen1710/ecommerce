@@ -5,16 +5,25 @@ import { useAuth } from "../../context/auth";
 const Dashboard = () => {
   const [auth] = useAuth();
   return (
-    <div className="container-fluid">
+    <div className="container-fluid dashboard">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 dashboard-left">
           <UserMenu />
         </div>
-        <div class="col-md-9">
-          <div className="card w-75 p-3">
-            <h5>User Name: {auth.user.name}</h5>
-            <h5>User Name: {auth.user.email}</h5>
-            <h5>User Name: {auth.user.phone}</h5>
+        <div class="col-md-9 dashboard-right">
+          <div className="w-75 dashboard-right-title mb-4">Profile</div>
+
+          <div>
+            <b>Name:</b> {auth.user.name}
+          </div>
+          <div>
+            <b>Email:</b> {auth.user.email}
+          </div>
+          <div>
+            <b>Phone:</b> {auth.user.phone}
+          </div>
+          <div>
+            <b>Address:</b> {auth.user.address}
           </div>
         </div>
       </div>
