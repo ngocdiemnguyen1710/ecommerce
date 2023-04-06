@@ -2,14 +2,18 @@ import React, { useMemo } from "react";
 import { Table } from "antd";
 import { useCart } from "../context/cart";
 import { getImageUrl } from "../assets/page/utils/image";
-import { BsTrash } from "react-icons/bs";
 import { useAuth } from "../context/auth";
 import { toast } from "react-hot-toast";
 import { Controls } from "./controls/Controls";
+import { AiFillEdit } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [cart, setCart] = useCart();
   const [auth] = useAuth();
+
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -91,7 +95,45 @@ const Cart = () => {
             <div className="cart-right-total">
               Total: <span>{sumPrice}</span>
             </div>
-            <Controls.Button title={"Checkout"} />
+            {auth?.user?.address ? (
+              <>
+                <div className="cart-right-total">
+                  Current address:{" "}
+                  <div>
+                    <span>{auth?.user?.address}</span>{" "}
+                    <Controls.ButtonAction
+                      icon={<AiFillEdit />}
+                      className="btn-edit-address"
+                      onClick={() => navigate("/dashboard/user/profile")}
+                    />
+                  </div>
+                </div>
+                <Controls.Button title={"Checkout"} />
+              </>
+            ) : (
+              <>
+                {auth?.token ? (
+                  <>
+                    <div className="cart-right-total">
+                      Current address:{" "}
+                      <div>
+                        <Controls.ButtonAction
+                          icon={<AiFillEdit />}
+                          className="btn-edit-address"
+                          onClick={() => navigate("/dashboard/user/profile")}
+                        />
+                      </div>
+                    </div>
+                    <Controls.Button title={"Checkout"} />
+                  </>
+                ) : (
+                  <Controls.Button
+                    title={"Please login to checkout"}
+                    onClick={() => navigate("/login", { state: "/cart" })}
+                  />
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -163,3 +163,37 @@ export const testController = async (req, res) => {
     res.send({ error });
   }
 };
+
+//Update profile
+export const updateProfileController = async (req, res) => {
+  try {
+    const { name, password, email, phone, address } = req.body;
+    const user = await userModel.findById(req.user._id);
+    //password
+    if (password && password.length < 4) {
+      return res.json({ error: "Password is required and 4 character long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updateUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        password: hashedPassword || user.password,
+        phone: phone || user.phone,
+        address: address || user.address,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Update successfully!",
+      updateUser,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while updating profile",
+    });
+  }
+};

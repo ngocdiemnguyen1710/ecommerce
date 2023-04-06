@@ -78,6 +78,7 @@ const Login = () => {
               placeholder="Enter your email"
               onChange={handleChange}
               error={errors.email}
+              required
             />
           </div>
           <div className="mb-3">
@@ -89,6 +90,7 @@ const Login = () => {
               placeholder="Enter your password"
               onChange={handleChange}
               error={errors.password}
+              required
             />
           </div>
           <div className="mb-3">
