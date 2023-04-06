@@ -6,9 +6,12 @@ import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
 import SearchInput from "../../pages/components/SearchInput";
 import { useCategoy } from "../../hooks/useCategory";
+import { useCart } from "../../context/cart";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   const categories = useCategoy();
 
   const handleLogout = () => {
@@ -128,12 +131,12 @@ const Header = () => {
                 </li>
               )}
             </ul>
-            <div className="cart">
+            <div className="cart" onClick={() => navigate("/cart")}>
               <div className="cart-item">
                 <div className="cart-icon">
                   <BsCartDash />
                 </div>
-                <div className="cart-number">0</div>
+                <div className="cart-number">{cart?.length}</div>
               </div>
             </div>
           </div>

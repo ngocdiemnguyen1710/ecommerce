@@ -1,6 +1,7 @@
 import React from "react";
 import { Controls } from "../controls/Controls";
 import { BsCartPlus } from "react-icons/bs";
+import { getImageUrl } from "../../assets/page/utils/image";
 
 const ProductItem = ({
   id,
@@ -11,16 +12,11 @@ const ProductItem = ({
   btn,
   handleMoreDetail,
   handleAddToCart,
-  baseUrl = "http://localhost:8080",
 }) => {
   return (
     <>
       <div className="card card-item">
-        <img
-          src={`${baseUrl}/api/v1/product/product-photo/${id}`}
-          className="card-img-top"
-          alt={alt}
-        />
+        <img src={getImageUrl(id)} className="card-img-top" alt={alt} />
         <div className="card-body">
           <h5 className="card-title text-center text-uppercase">{name}</h5>
           <p className="card-text text-center">

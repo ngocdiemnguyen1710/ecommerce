@@ -6,6 +6,7 @@ import axiosClient from "../config/axios";
 import { Controls } from "./controls/Controls";
 import ProductItem from "./components/ProductItem";
 import { useCategoy } from "../hooks/useCategory";
+import { useCart } from "../context/cart";
 
 const Homepage = () => {
   const [dataProduct, setDataProduct] = useState([]);
@@ -14,6 +15,7 @@ const Homepage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useCart();
 
   const categories = useCategoy();
 
@@ -102,6 +104,13 @@ const Homepage = () => {
     setCheckedList(all);
   };
 
+  const handleAddToCart = (data) => {
+    setCart([...cart, data]);
+    const newData = JSON.stringify([...cart, data]);
+    localStorage.setItem("cart", newData);
+    toast.success("Add item to cart successfully!");
+  };
+
   return (
     <div className="container-fluid homepage">
       <h4 className="homepage-title text-uppercase text-center">
@@ -160,6 +169,7 @@ const Homepage = () => {
                   description={data.description}
                   price={data.price}
                   handleMoreDetail={() => navigate(`/product/${data.slug}`)}
+                  handleAddToCart={() => handleAddToCart(data)}
                   btn
                 />
               );

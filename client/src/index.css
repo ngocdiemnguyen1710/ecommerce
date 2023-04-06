@@ -4,11 +4,14 @@
 @import url('../src/assets/page/homepage.css');
 @import url('../src/assets/page/productDetails.css');
 @import url('../src/assets/page/category.css');
+@import url('../src/assets/page/cart.css');
 
 :root {
   --main-blue: #4961b1;
   --main-white: #fff;
   --main-black: #333;
+  --main-gray: #f6f6f6;
+  --border-gray: #e6e6e6;
 }
 
 *{
@@ -71,6 +74,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .cart-item {
   position: relative;
