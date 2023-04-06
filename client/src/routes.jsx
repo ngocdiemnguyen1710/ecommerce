@@ -24,6 +24,7 @@ import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
 import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
+import Cart from "./pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
           {
             path: "/policy",
             element: <Policy />,
+          },
+          {
+            path: "/cart",
+            element: <Cart />,
           },
           {
             path: "/search",

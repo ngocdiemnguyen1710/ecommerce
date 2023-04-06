@@ -8,14 +8,17 @@ import { SearchProvider } from "./context/search";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/reset.css";
+import { CartProvider } from "./context/cart";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <SearchProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </AuthProvider>
-    </SearchProvider>
+    <AuthProvider>
+      <SearchProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </CartProvider>
+      </SearchProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
