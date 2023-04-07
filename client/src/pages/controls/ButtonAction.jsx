@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonAction = ({ title, onClick, icon, className }) => {
+const ButtonAction = ({ title, onClick, icon, className, ...other }) => {
   return (
     <div
       className={`btn-action ${
@@ -14,7 +14,7 @@ const ButtonAction = ({ title, onClick, icon, className }) => {
           : "btn-action--delete"
       } ${className}`}
     >
-      <button className="btn" type="submit" onClick={onClick}>
+      <button className="btn" type="submit" onClick={onClick} {...other}>
         <span className="icon">{icon}</span>
         {title}
       </button>
