@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosClient from "../../config/axios";
 import { useAuth } from "../../context/auth";
 import useForm, { Form } from "../../hooks/useForm";
@@ -13,6 +13,7 @@ const initialValue = {
 const Login = () => {
   const [auth, setAuth] = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const validate = (fieldValues = values) => {
     const temp = { ...errors };

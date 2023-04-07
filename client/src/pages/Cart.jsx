@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Table } from "antd";
 import { useCart } from "../context/cart";
 import { getImageUrl } from "../assets/page/utils/image";
@@ -8,10 +8,15 @@ import { Controls } from "./controls/Controls";
 import { AiFillEdit } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import DropIn from "braintree-web-drop-in-react";
+import axiosClient from "../config/axios";
 
 const Cart = () => {
   const [cart, setCart] = useCart();
   const [auth] = useAuth();
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -74,6 +79,43 @@ const Cart = () => {
     });
   }, [cart]);
 
+  //Get token payment
+  const getTokenPayment = async () => {
+    try {
+      const { data } = await axiosClient.get("/api/v1/product/braintree/token");
+      if (data) {
+        setClientToken(data?.clientToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Handle Payment
+  const handlePayment = async () => {
+    try {
+      setLoading(true);
+      //send the nonce to your server
+      const { nonce } = instance.requestPaymentMethod();
+      const { data } = await axiosClient.post(
+        "/api/v1/product/braintree/payment",
+        { cart, nonce }
+      );
+      setLoading(false);
+      localStorage.removeItem("cart");
+      setCart([]);
+      navigate("/dashboard/user/orders");
+      toast.success("Payment completed successfully!");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getTokenPayment();
+  }, [auth?.token]);
+
   return (
     <div className="homepage">
       <h4 className="cart-title text-uppercase">My Cart</h4>
@@ -108,7 +150,6 @@ const Cart = () => {
                     />
                   </div>
                 </div>
-                <Controls.Button title={"Checkout"} />
               </>
             ) : (
               <>
@@ -124,7 +165,6 @@ const Cart = () => {
                         />
                       </div>
                     </div>
-                    <Controls.Button title={"Checkout"} />
                   </>
                 ) : (
                   <Controls.Button
@@ -132,6 +172,30 @@ const Cart = () => {
                     onClick={() => navigate("/login", { state: "/cart" })}
                   />
                 )}
+              </>
+            )}
+          </div>
+          <div className="mt-3">
+            {!clientToken || !cart?.length ? (
+              ""
+            ) : (
+              <>
+                <DropIn
+                  options={{
+                    authorization: clientToken,
+                    paypal: {
+                      flow: "vault",
+                    },
+                  }}
+                  onInstance={(instance) => setInstance(instance)}
+                />
+                <div className="text-center">
+                  <Controls.ButtonAction
+                    title={loading ? "Processing..." : "Make Payment"}
+                    onClick={handlePayment}
+                    disabled={loading || !instance || !auth?.user?.address}
+                  />
+                </div>
               </>
             )}
           </div>
