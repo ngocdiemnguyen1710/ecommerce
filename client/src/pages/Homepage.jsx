@@ -99,6 +99,7 @@ const Homepage = () => {
       let findIndex = all.findIndex((item) => item == id);
       if (findIndex !== -1) {
         all.splice(findIndex, 1);
+        getAllProduct();
       }
     }
     setCheckedList(all);

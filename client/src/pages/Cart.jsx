@@ -96,7 +96,7 @@ const Cart = () => {
     try {
       setLoading(true);
       //send the nonce to your server
-      const { nonce } = instance.requestPaymentMethod();
+      const { nonce } = await instance.requestPaymentMethod();
       const { data } = await axiosClient.post(
         "/api/v1/product/braintree/payment",
         { cart, nonce }
@@ -129,7 +129,12 @@ const Cart = () => {
       )}
       <div className="row mt-3">
         <div className="col-md-8">
-          <Table columns={columns} dataSource={cart} pagination={false} />
+          <Table
+            columns={columns}
+            dataSource={cart}
+            pagination={false}
+            rowKey={(record) => record._id}
+          />
         </div>
         <div className="col-md-4">
           <div className="cart-right">
