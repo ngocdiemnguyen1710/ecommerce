@@ -199,7 +199,7 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
-//orders
+//Get Orders User
 export const getOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
@@ -213,6 +213,44 @@ export const getOrdersController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while getting orders",
+      error,
+    });
+  }
+};
+
+//Get All Orders
+export const getAllOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: -1 }); //sắp xếp mới nhất ở trên cùng
+    res.json(orders);
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error while getting orders",
+      error,
+    });
+  }
+};
+
+//Order Status
+export const orderStatusController = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    res.json(orders);
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error while update status orders",
       error,
     });
   }

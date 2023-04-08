@@ -30,8 +30,8 @@ const Select = ({
         onChange={(data) => {
           onChange(convertToDefEventPara(name, data));
         }}
+        value={value}
         onSearch={onSearch}
-        value={value?.name}
         name={name}
         {...(error && { status: "error" })}
         {...other}
