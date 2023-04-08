@@ -3,13 +3,13 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 
 const Users = () => {
   return (
-    <div className="container-fluid">
-      <div class="row">
-        <div class="col-md-3">
+    <div className="container-fluid dashboard">
+      <div className="row">
+        <div className="col-md-3 dashboard-left">
           <AdminMenu />
         </div>
-        <div class="col-md-9">
-          <div className="card w-75 p-3">Users</div>
+        <div className="col-md-9 dashboard-right">
+          <div className="w-75 dashboard-right-title mb-4">Users</div>
         </div>
       </div>
     </div>

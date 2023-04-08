@@ -6,8 +6,7 @@ import axiosClient from "../../config/axios";
 import useForm from "../../hooks/useForm";
 import ButtonAction from "../controls/ButtonAction";
 import { Controls } from "../controls/Controls";
-
-const baseUrl = "http://localhost:8080";
+import { getImageUrl } from "../../assets/page/utils/image";
 
 const shippingItems = [
   {
@@ -56,7 +55,6 @@ const UpdateProduct = () => {
     validate
   );
 
-  console.log(values.category.name);
   const getAllCategory = async () => {
     const res = await axiosClient.get("/api/v1/category/get-category");
     setDataCategory(res.data.category);
@@ -73,11 +71,11 @@ const UpdateProduct = () => {
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     const productData = new FormData();
-    const category = values?.category._id;
+
     productData.append("name", values?.name);
     productData.append("description", values?.description);
     productData.append("price", values?.price);
-    productData.append("category", category);
+    productData.append("category", values?.category?._id);
     productData.append("quantity", values?.quantity);
     productData.append("shipping", values?.shipping);
     productData.append("photo", values?.photo);
@@ -93,6 +91,7 @@ const UpdateProduct = () => {
     );
     if (data && data?.success) {
       toast.success("Product updated successfully!");
+      getAllProduct();
       navigate("/dashboard/admin/products");
     } else {
       toast.error(data.message);
@@ -135,7 +134,7 @@ const UpdateProduct = () => {
               placeholder="Select a category"
               options={dataCategory}
               onChange={handleChange}
-              value={values?.category}
+              value={values?.category.name}
               name="category"
               error={errors.category}
             />
@@ -162,7 +161,7 @@ const UpdateProduct = () => {
               <div className="text-center">
                 <img
                   className="img img-responsive"
-                  src={`${baseUrl}/api/v1/product/product-photo/${id}`}
+                  src={getImageUrl(id)}
                   alt="photo upload"
                   height={"200px"}
                 />

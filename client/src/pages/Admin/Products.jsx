@@ -4,19 +4,60 @@ import { Link } from "react-router-dom";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import axiosClient from "../../config/axios";
 import ProductItem from "../components/ProductItem";
+import { Controls } from "../controls/Controls";
 
 const Products = () => {
   const [dataProduct, setDataProduct] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAllProduct();
   }, []);
 
+  useEffect(() => {
+    getCountProduct();
+  }, [total]);
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
+
   const getAllProduct = async () => {
-    const { data } = await axiosClient.get("/api/v1/product/get-product");
+    setLoading(true);
+    const { data } = await axiosClient.get(
+      `/api/v1/product/product-list/${page}`
+    );
+    setLoading(false);
     if (data && data?.success) {
-      setDataProduct(data.products);
+      setDataProduct(data?.products);
     } else {
+      setLoading(false);
+      toast.error(data.message);
+    }
+  };
+
+  const getCountProduct = async () => {
+    const { data } = await axiosClient.get("/api/v1/product/count-product");
+    if (data && data?.success) {
+      setTotal(data.total);
+    } else {
+      toast.error("Cannot count");
+    }
+  };
+
+  const loadMore = async () => {
+    setLoading(true);
+    const { data } = await axiosClient.get(
+      `/api/v1/product/product-list/${page}`
+    );
+    setLoading(false);
+    if (data && data?.success) {
+      setDataProduct([...dataProduct, ...data?.products]);
+    } else {
+      setLoading(false);
       toast.error(data.message);
     }
   };
@@ -48,6 +89,17 @@ const Products = () => {
                   </Link>
                 );
               })}
+          </div>
+          <div className="mt-3 text-center">
+            {dataProduct && dataProduct.length < total && (
+              <Controls.ButtonAction
+                title={loading ? "Loading..." : "Load more"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
