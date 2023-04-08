@@ -6,15 +6,25 @@ const AdminDashboard = () => {
   const [auth] = useAuth();
   return (
     <div className="container-fluid dashboard">
-      <div class="row">
-        <div class="col-md-3">
+      <div className="row">
+        <div className="col-md-3 dashboard-left">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-9 dashboard-right">
           <div className="card w-75 p-3">
-            <h5>Admin Name: {auth.user.name}</h5>
-            <h5>Admin Name: {auth.user.email}</h5>
-            <h5>Admin Name: {auth.user.phone}</h5>
+            <div className="w-75 dashboard-right-title mb-4">Admin</div>
+            <div>
+              <b>Name:</b> {auth.user.name}
+            </div>
+            <div>
+              <b>Email:</b> {auth.user.email}
+            </div>
+            <div>
+              <b>Phone:</b> {auth.user.phone}
+            </div>
+            <div>
+              <b>Address:</b> {auth.user.address}
+            </div>
           </div>
         </div>
       </div>
